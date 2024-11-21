@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        header p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        header a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        section {
+            padding: 20px;
+        }
+        .paper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .paper img {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .paper a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="media/profile_pic.jpg" alt="Your Photo">
+        <p>
+            I am a PhD student at the University of Cagliari, specializing in computer graphics.
+            My current research focuses on volume maps, exploring innovative techniques and applications in this field.
+        </p>
+
+        <a href="https://scholar.google.com/citations?user=7J2SyuwAAAAJ&hl=it">Google Scholar</a>
+        <a href="https://github.com/federicheddu">GitHub</a>
+        <a href="https://twitter.com/federicheddu">Twitter</a>
+
+    </header>
+
+    <section>
+        <h2>Research Papers</h2>
+        <div class="paper">
+            <img src="media/volume_mapping_comp.png" alt="Paper Thumbnail">
+            <div>
+                <a href="https://diglib.eg.org/server/api/core/bitstreams/b17146fe-0b6e-45ab-aee4-0e557161e9cd/content">To What Extent Are Existing Volume Mapping
+                    Algorithms Practically Useful?</a>
+            </div>
+        </div>
+
+        <div class="paper">
+            <img src="media/tutorialkit.png" alt="Paper Thumbnail">
+            <div>
+                <a href="https://iris.unica.it/retrieve/4d8f582f-0e3a-4356-9a48-9c9202381a67/short-s0-02_compressed.pdf">AR TutorialKit: an Augmented Reality Toolkit to Create Tutorials</a>
+            </div>
+        </div>
+        
+    </section>
+</body>
+</html>
