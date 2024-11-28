@@ -13,9 +13,13 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background-color 0.1s, color 0.1s; /* Faster transition */
         }
         main {
             flex: 1;
+        }
+        header, footer, .paper, .top-bar {
+            transition: background-color 0.1s, color 0.1s, border-color 0.1s; /* Faster transition */
         }
         header {
             background-color: #f4f4f4;
@@ -85,12 +89,104 @@
         footer img {
             vertical-align: middle;
             height: 20px;
+            transition: filter 0.1s; /* Faster transition */
+        }
+        .top-bar {
+            background-color: #cc5500; /* Darker orange */
+            height: 30px; /* Adjusted height */
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between elements */
+            padding: 0 20px; /* Added padding */
+            color: white;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace; /* Monospaced font */
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        .dark-mode header {
+            background-color: #444;
+        }
+        .dark-mode footer {
+            background-color: #444;
+        }
+        .dark-mode .paper {
+            border-color: #f4f4f4;
+        }
+        .dark-mode .paper img {
+            border-color: #ccc; /* Light grey border */
+        }
+        .dark-mode .paper a, .dark-mode header a {
+            color: #ccc; /* Light grey links */
+        }
+        .dark-mode footer img {
+            filter: invert(1); /* Change SVG color to white */
+        }
+        /* Remove dark mode styling for top bar */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .1s; /* Faster transition */
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "☀️";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .1s; /* Faster transition */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+        input:checked + .slider:before {
+            transform: translateX(14px);
+            content: "🌙";
         }
     </style>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </head>
 
 <body>
-
+    <div class="top-bar">
+        <span>https://127.0.0.1:5500/index.html</span>
+        <label class="switch">
+            <input type="checkbox" onclick="toggleDarkMode()">
+            <span class="slider"></span>
+        </label>
+    </div>
     <header>
         <div class="header-row">
             <img src="media/profile_pic.jpg" alt="Your Photo" class="profile-pic">
