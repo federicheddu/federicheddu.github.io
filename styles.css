@@ -59,7 +59,7 @@ header .header-row a {
     padding: 0 2px; /* Add lateral padding */
 }
 section {
-    padding: 20px;
+    padding: 20px; /* Reduced top/bottom padding from 20px to 10px */
     max-width: 900px; /* Add maximum horizontal length */
     margin-left: auto;
     margin-right: auto;
@@ -98,6 +98,111 @@ footer img {
     height: 20px;
     transition: filter 0.1s; /* Faster transition */
 }
+
+/* Add before the dark-mode styles */
+
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    display: none; /* Remove the single continuous line */
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 20px; /* Increased from 30px for better spacing */
+    position: relative;
+    align-items: stretch; /* Make children match heights */
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0; /* Remove margin from last item */
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 48px;     /* Centered with the 100px width logo container */
+    top: 145px;     /* Position after the year text */
+    height: 42px;   /* Adjusted to reach the next item */
+    width: 4px;     /* Slightly thicker line */
+    background: #555555;  /* Changed from #333 to a dark grey */
+    border-radius: 10px;
+}
+
+.dark-mode .timeline-item:not::last-child::after {
+    background: #999;  /* Changed to a lighter grey for dark mode */
+}
+
+.timeline-logo {
+    width: 100px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Changed from space-between to center */
+    align-items: center;
+    position: relative;
+    height: 100%;
+    gap: 5px; /* Add space between image and year text */
+    padding: 20px 0; /* Add vertical padding to match timeline-content */
+}
+
+.timeline-logo img {
+    width: 90px;  /* Increased from 80px */
+    height: 90px; /* Increased from 80px */
+    border-radius: 50%;
+    margin: 0 auto;
+    object-fit: contain;
+    flex-grow: 1;
+    max-height: calc(100% - 25px); /* Account for year text height */
+}
+
+.timeline-year {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #666;
+    font-weight: bold;
+    flex-shrink: 0; /* Prevent year from shrinking */
+}
+
+.dark-mode .timeline-year {
+    color: #aaa;
+}
+
+.timeline-content {
+    margin-left: 20px;
+    background: white;
+    padding: 20px 25px; /* Increased padding for better proportions */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    flex-grow: 1;
+    min-height: 100px; /* Ensure minimum height for content */
+}
+
+.dark-mode .timeline-content {
+    background: #3a3a3a;
+}
+
+.timeline-content h3 {
+    margin: 0 0 10px 0;
+}
+
+.timeline-content p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.dark-mode .timeline-content p {
+    color: #aaa;
+}
+
+.award {
+    font-size: 0.9em;
+    margin-right: 5px;
+}
+
 .dark-mode {
     background: linear-gradient(135deg, #1e1e1e 0%, #333 100%);
     color: #e0e0e0;
@@ -126,6 +231,9 @@ footer img {
 }
 .dark-mode footer img {
     filter: invert(1); /* Change SVG color to white */
+}
+.dark-mode .timeline-logo img {
+    filter: invert(1); /* Make black logo white in dark mode */
 }
 /* Remove dark mode styling for top bar */
 .switch {
