@@ -282,3 +282,27 @@ input:checked + .slider:before {
     transform: translateX(14px);
     content: "🌙";
 }
+
+.header-cluster {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+}
+
+.header-cluster a {
+    text-decoration: none;
+}
+
+.header-cluster-title {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.header-cluster-line {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
