@@ -14,6 +14,30 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        .map-buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .map-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .map-buttons button:hover {
+            background-color: #0056b3;
+        }
+        .down-arrow {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 16.5l-8-8h16z"/></svg>') no-repeat center center;
+            background-size: contain;
+        }
     </style>
 </head>
 <body>
@@ -24,8 +48,14 @@
         <section>
             <h2>Interactive Map</h2>
             <div id="map"></div>
+            <div class="map-buttons">
+                <button onclick="frameEurope()">Europe</button>
+                <button onclick="scrollToSection('europe')"><span class="down-arrow"></span></button>
+                <button onclick="frameJapan()">Japan Trip</button>
+                <button onclick="scrollToSection('japan')"><span class="down-arrow"></span></button>
+            </div>
         </section>
-        <section>
+        <section id="europe">
             <h2>Europe</h2>
             <div class="cards-container">
                 <div class="card">
@@ -114,7 +144,7 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section id="japan">
             <h2>Japan Trip 2024</h2>
             <div class="cards-container">
                 <div class="card">
@@ -218,7 +248,8 @@
             "FRA": "#1f78b4", // France
             "GRC": "#33a02c", // Greece
             "JPN": "#e31a1c", // Japan
-            "HUN": "#6a3d9a"  // Hungary
+            "HUN": "#6a3d9a", // Hungary
+            "CHE": "#ffcc00"  // Switzerland
         };
 
         var geojsonLayer = L.geoJSON(null, {
@@ -237,6 +268,24 @@
             .then(data => {
                 geojsonLayer.addData(data.features.filter(feature => Object.keys(countries).includes(feature.id)));
             });
+
+        function frameEurope() {
+            map.fitBounds([
+                [55, -10],  // Northernmost point with margin
+                [35, 40]    // Southernmost point with margin
+            ]);
+        }
+
+        function frameJapan() {
+            map.fitBounds([
+                [45, 122],  // Northernmost point with margin
+                [24, 153]   // Southernmost point with margin
+            ]);
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
