@@ -351,19 +351,11 @@ input:checked + .slider:before {
 }
 .globe-icon {
     position: absolute;
-    top: 20px;
+    top: 16px;
     right: 65px; /* Adjusted to be near the dark mode switch */
     display: inline-block;
     width: 23px;
     height: 23px;
-}
-.globe-icon img {
-    width: 100%;
-    height: 100%;
-    transition: filter 0.1s; /* Faster transition */
-}
-.dark-mode .globe-icon img {
-    filter: invert(1); /* Change SVG color to white */
 }
 
 /* Add styles for the new cards */
