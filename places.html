@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Places Visited</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Places I've Visited</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Interactive Map</h2>
+            <div id="map"></div>
+        </section>
+        <section>
+            <h2>Europe</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Panorama_Cagliari.JPG/800px-Panorama_Cagliari.JPG" alt="Cagliari" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Cagliari, Italy</h3>
+                        <p>🏡</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://res.cloudinary.com/hello-tickets/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_800/v1646056162/gicfdxh7kezdkmegnz3y.jpg" alt="Paris" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇫🇷 Paris, France</h3>
+                        <p>Year: 2001, 2023</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://static.nexilia.it/vologratis/2020/11/panorami-roma.jpg" alt="Rome" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Rome, Italy</h3>
+                        <p>Year: 20xx, 2019, 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.shutterstock.com/image-photo/drone-photography-duomo-cathedral-sunrise-600nw-2313454157.jpg" alt="Milan" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Milan, Italy</h3>
+                        <p>Year: 2022, 2023</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://t3.ftcdn.net/jpg/01/67/80/62/360_F_167806246_vQHRAjEDx9IXbYa949qsVsGh2XeG8t5u.jpg" alt="Naples" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Naples, Italy</h3>
+                        <p>Year: 2021</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.latitudeslife.com/wp-content/uploads/atene-panorama-partenone-mare.jpg" alt="Athens" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇬🇷 Athens, Greece</h3>
+                        <p>Year: 2023</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://budapest-panorama-central-hotel.hotelmix.it/data/Photos/OriginalPhoto/10178/1017899/1017899710/Budapest-Panorama-Central-Hotel-Exterior.JPEG" alt="Budapest" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇭🇺 Budapest, Hungary</h3>
+                        <p>Year: 2017</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://i0.wp.com/atinytravelstory.com/wp-content/uploads/2022/03/Atinytravelstory_Firenzedallalto_TorreArnolfo.jpg" alt="Florence" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Florence, Italy</h3>
+                        <p>Year: 20xx</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-media.italiani.it/site-verona/2019/06/veduta-da-castel-san-pietro.jpg" alt="Verona" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇮🇹 Verona, Italy</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Mont-Saint-Michel_vu_du_ciel.jpg/1200px-Mont-Saint-Michel_vu_du_ciel.jpg" alt="Mont Saint-Michel" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇫🇷 Mont Saint-Michel, France</h3>
+                        <p>Year: 2016</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://www.montesansalvatore.ch/wp-content/uploads/bfi_thumb/panorama-gallery-13-ao75q0plr2wxk2hymkgfc0kj69f1bun4lv5ugs1t658ieff0.jpg" alt="Lugano" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇨🇭 Lugano, Switzerland</h3>
+                        <p>Year: 20xx</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://oggidoveandiamo.com/wp-content/uploads/2021/11/Corte-Corsica.jpg" alt="Corte" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇫🇷 Corte, Corsica, France</h3>
+                        <p>Year: 20xx</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Japan Trip 2024</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <img src="https://maisonoffice.vn/wp-content/uploads/2024/09/0-toa-nha-cao-nhat-tokyo-640x362.jpg" alt="Tokyo" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Tokyo, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://media.tacdn.com/media/attractions-content--1x-1/10/29/d5/01.jpg" alt="Kyoto" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Kyoto, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/477000/477571-Osaka.jpg" alt="Osaka" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Osaka, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://it.japanspecialist.com/o/adaptive-media/image/518425/large/Japan-Heritage_Matsumoto_Matumoto-Castle.jpg" alt="Matsumoto" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Matsumoto, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://media.istockphoto.com/id/521890621/it/foto/takayama.jpg?s=612x612&w=0&k=20&c=wzLYoN0bb7-Pu4RYvPHcZdwlbLPgYYHKa9Wq-Mwjomc=" alt="Takayama" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Takayama, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://it.japanspecialist.com/documents/d/japanspecialistit/5_exploring_kanazawa_cultural_treasures_listing_body" alt="Kanazawa" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Kanazawa, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.cheapoguides.com/wp-content/uploads/sites/3/2017/10/Deer-and-Gate-1024x683.jpg" alt="Nara" class="polaroid">
+                    <div class="card-content">
+                        <h3>🇯🇵 Nara, Japan</h3>
+                        <p>Year: 2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>This website was made by me with <img src="https://www.svgrepo.com/show/439915/heart-fill.svg" alt="love"> and <img src="https://simpleicons.org/icons/githubcopilot.svg" alt="Copilot"></p>
+    </footer>
+    <script>
+        var places = [
+            { "name": "Cagliari, Italy", "coords": [39.2238, 9.1217] },
+            { "name": "Paris, France", "coords": [48.8566, 2.3522] },
+            { "name": "Rome, Italy", "coords": [41.9028, 12.4964] },
+            { "name": "Milan, Italy", "coords": [45.4642, 9.1900] },
+            { "name": "Naples, Italy", "coords": [40.8518, 14.2681] },
+            { "name": "Athens, Greece", "coords": [37.9838, 23.7275] },
+            { "name": "Tokyo, Japan", "coords": [35.6895, 139.6917] },
+            { "name": "Budapest, Hungary", "coords": [47.4979, 19.0402] },
+            { "name": "Florence, Italy", "coords": [43.7696, 11.2558] },
+            { "name": "Verona, Italy", "coords": [45.4384, 10.9916] },
+            { "name": "Mont Saint-Michel, France", "coords": [48.6361, -1.5115] },
+            { "name": "Kyoto, Japan", "coords": [35.0116, 135.7681] },
+            { "name": "Osaka, Japan", "coords": [34.6937, 135.5023] },
+            { "name": "Matsumoto, Japan", "coords": [36.2381, 137.9716] },
+            { "name": "Takayama, Japan", "coords": [36.1462, 137.2516] },
+            { "name": "Kanazawa, Japan", "coords": [36.5613, 136.6562] },
+            { "name": "Lugano, Switzerland", "coords": [46.0037, 8.9511] },
+            { "name": "Corte, Corsica, France", "coords": [42.3064, 9.1500] },
+            { "name": "Nara, Japan", "coords": [34.6851, 135.8048] }
+        ];
+
+        var map = L.map('map', {
+            maxBounds: [
+                [-90, -180],
+                [90, 180]
+            ],
+            maxBoundsViscosity: 1.0,
+            minZoom: 2 // Set minimum zoom level
+        }).fitBounds(places.map(place => place.coords));
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        places.forEach(function(place) {
+            L.marker(place.coords).addTo(map)
+                .bindPopup('<b>' + place.name + '</b>');
+        });
+
+        var countries = {
+            "ITA": "#ff7800", // Italy
+            "FRA": "#1f78b4", // France
+            "GRC": "#33a02c", // Greece
+            "JPN": "#e31a1c", // Japan
+            "HUN": "#6a3d9a"  // Hungary
+        };
+
+        var geojsonLayer = L.geoJSON(null, {
+            style: function(feature) {
+                return {
+                    color: countries[feature.id],
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.5
+                };
+            }
+        }).addTo(map);
+
+        fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+            .then(response => response.json())
+            .then(data => {
+                geojsonLayer.addData(data.features.filter(feature => Object.keys(countries).includes(feature.id)));
+            });
+    </script>
+</body>
+</html>

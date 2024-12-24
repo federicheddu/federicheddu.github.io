@@ -306,3 +306,112 @@ input:checked + .slider:before {
     background-color: #ccc;
     margin-bottom: 10px;
 }
+
+
+/* Add styles for the new infographic page */
+.infographic {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.infographic img {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+.infographic .places-list {
+    flex-grow: 1;
+}
+.infographic .places-list h3 {
+    margin-top: 0;
+}
+.infographic .places-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+.infographic .places-list li {
+    margin: 5px 0;
+}
+.dark-mode .infographic {
+    background-color: #3a3a3a;
+    border-color: #555;
+}
+.dark-mode .infographic img {
+    border-color: #555;
+}
+.dark-mode .infographic .places-list h3,
+.dark-mode .infographic .places-list li {
+    color: #e0e0e0;
+}
+.globe-icon {
+    position: absolute;
+    top: 20px;
+    right: 65px; /* Adjusted to be near the dark mode switch */
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+}
+.globe-icon img {
+    width: 100%;
+    height: 100%;
+    transition: filter 0.1s; /* Faster transition */
+}
+.dark-mode .globe-icon img {
+    filter: invert(1); /* Change SVG color to white */
+}
+
+/* Add styles for the new cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(33% - 20px); /* Three cards per row */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card img.polaroid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the area */
+    object-position: center; /* Center the image */
+    aspect-ratio: 1 / 1; /* Maintain a 4:3 aspect ratio */
+}
+.card-content {
+    padding: 10px;
+}
+.card-content h3 {
+    margin: 10px 0;
+}
+.card-content p {
+    margin: 5px 0;
+}
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px); /* Two cards per row on smaller screens */
+    }
+}
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* One card per row on very small screens */
+    }
+}
