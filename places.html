@@ -23,13 +23,13 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #007bff;
+            background-color: #333;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s;
         }
         .map-buttons button:hover {
-            background-color: #0056b3;
+            background-color: #555;
         }
         .down-arrow {
             display: inline-block;
@@ -38,10 +38,26 @@
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 16.5l-8-8h16z"/></svg>') no-repeat center center;
             background-size: contain;
         }
+        .go-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .go-back:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
     <header>
+        <button class="go-back" onclick="window.location.href='index.html'">←</button>
         <h1>🛫 Federicheddu's World Map 🛬</h1>
         <p>I like to travel and explore new places. <br>
             Here are some of the cities I've visited in Europe and in my trip in Japan.</p>
