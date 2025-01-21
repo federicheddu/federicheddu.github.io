@@ -59,7 +59,7 @@ header .header-row a {
     padding: 0 2px; /* Add lateral padding */
 }
 section {
-    padding: 20px; /* Reduced top/bottom padding from 20px to 10px */
+    padding: 10px 40px; /* Reduced top/bottom padding from 20px to 10px */
     max-width: 900px; /* Add maximum horizontal length */
     margin-left: auto;
     margin-right: auto;
@@ -109,7 +109,7 @@ footer img {
 
 .timeline-item {
     display: flex;
-    margin-bottom: 20px; /* Increased from 30px for better spacing */
+    margin-bottom: 10px; /* Increased from 30px for better spacing */
     position: relative;
     align-items: center; /* Changed from stretch to center */
 }
