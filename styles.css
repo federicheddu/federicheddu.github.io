@@ -84,7 +84,7 @@ section {
     color: #333;
 }
 .paper p {
-    margin: 10px 0; /* Increased spacing between paragraphs */
+    margin: 5px 0; /* Increased spacing between paragraphs */
 }
 footer {
     background: linear-gradient(135deg, #f4f4f4 0%, #e2e2e2 100%);
@@ -111,22 +111,7 @@ footer img {
     display: flex;
     margin-bottom: 20px; /* Increased from 30px for better spacing */
     position: relative;
-    align-items: stretch; /* Make children match heights */
-}
-
-.timeline-item:last-child {
-    margin-bottom: 0; /* Remove margin from last item */
-}
-
-.timeline-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 48px;     /* Centered with the 100px width logo container */
-    top: 145px;     /* Position after the year text */
-    height: 42px;   /* Adjusted to reach the next item */
-    width: 4px;     /* Slightly thicker line */
-    background: #555555;  /* Changed from #333 to a dark grey */
-    border-radius: 10px;
+    align-items: center; /* Changed from stretch to center */
 }
 
 .timeline-logo {
