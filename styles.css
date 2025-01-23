@@ -20,6 +20,8 @@ header {
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Ensure header is above main section */
+    position: relative; /* Ensure shadow is visible */
 }
 .header-row {
     display: flex;
@@ -282,4 +284,51 @@ footer img {
     .card {
         width: 100%; /* One card per row on very small screens */
     }
+}
+
+/* Add styles for the tab selector and tab content */
+.tabs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #f4f4f4; /* Match the non-active button color */
+    padding: 10px 0; /* Add padding for better spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for modern look */
+}
+
+.tab-button {
+    background-color: #f4f4f4;
+    border: none; /* Remove border */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Add color transition */
+    margin: 0 5px; /* Add margin between buttons */
+    font-weight: bold; /* Make text bold */
+    color: #333; /* Set text color */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+.tab-button:hover {
+    background-color: #e2e2e2;
+    color: #000; /* Change text color on hover */
+}
+
+.tab-button:focus {
+    outline: none;
+    background-color: #ddd;
+    color: #000; /* Change text color on focus */
+}
+
+.tab-button.active {
+    background-color: #007bff; /* Active button background color */
+    color: #fff; /* Active button text color */
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
