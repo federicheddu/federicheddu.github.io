@@ -321,8 +321,8 @@ footer img {
 }
 
 .tab-button.active {
-    background-color: #007bff; /* Active button background color */
-    color: #fff; /* Active button text color */
+    background-color: #e2e2e2;
+    color: #000;
 }
 
 .tab-content {

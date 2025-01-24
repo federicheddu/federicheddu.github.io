@@ -24,8 +24,8 @@
         </div>
         <div class="bio">
             <p>
-                I am a PhD student at the University of Cagliari, specializing in computer graphics.
-                My current research focuses on volume maps, exploring innovative techniques and applications in this field.
+                I am a <strong>PhD student</strong> at the <strong>University of Cagliari</strong>, specializing in <strong>computer graphics</strong>.
+                My current research focuses on <strong>volume maps</strong>, exploring innovative techniques and applications in this field.
             </p>
         </div>
         <div class="header-row">
@@ -70,10 +70,34 @@
     </header>
     <main>
         <div class="tabs">
+            <button class="tab-button" onclick="showSection('home')">Home</button>
             <button class="tab-button" onclick="showSection('education')">Education</button>
             <button class="tab-button" onclick="showSection('research')">Research</button>
             <button class="tab-button" onclick="showSection('experience')">Experience</button>
         </div>
+        <section id="home" class="tab-content" style="display:none;">
+            <h2>Hello, my name is Federico Meloni!</h2>
+            <p>
+                I am a <strong>PhD student</strong> in <strong>Computer Science</strong> at the <strong>University of Cagliari</strong>, specializing in <strong>computer graphics</strong>.
+            </p>
+            <p>
+                My research focuses on <strong>volume maps</strong>, exploring innovative techniques and applications in this field.
+            </p>
+            <p>
+                I am passionate about <strong>technology</strong> and <strong>innovation</strong>, and I am always looking for new challenges and opportunities to learn and grow.
+            </p>
+            <p>
+                In my free time, I enjoy playing <strong>basketball</strong>, <strong>videogames</strong> and <strong>board games</strong>, listening to <strong>music</strong>, watching <strong>movies</strong>, and <strong>exploring new places</strong>, always with a <strong>camera</strong> in hand.
+            </p>
+            <p>
+                This website is a <strong>showcase</strong> of my work and interests, but it is also an experiment always <strong>work in progress</strong>.
+                <br>
+                Sometimes you can find something new <i>(like my <strong><a href="places.html">travel map</a></strong>)</i>, sometimes you can find something broken. <strong>I hope you enjoy it!</strong>
+            </p>
+            <p>
+                Feel free to reach out to me via email or connect with me on social media!
+            </p>
+        </section>
         <section id="education" class="tab-content">
             <h2>University</h2>
             <div class="timeline">
@@ -182,7 +206,13 @@
         <p>This website was made by me with <img src="https://www.svgrepo.com/show/439915/heart-fill.svg" alt="love"> and <img src="https://simpleicons.org/icons/githubcopilot.svg" alt="Copilot"></p>
     </footer>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('home');
+        });
         function showSection(sectionId) {
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`button[onclick="showSection('${sectionId}')"]`).classList.add('active');
             const sections = document.querySelectorAll('.tab-content');
             sections.forEach(section => {
                 section.style.display = section.id === sectionId ? 'block' : 'none';
