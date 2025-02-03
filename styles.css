@@ -227,14 +227,6 @@ footer img {
 .infographic .places-list li {
     margin: 5px 0;
 }
-.globe-icon {
-    position: absolute;
-    top: 16px;
-    right: 65px; /* Adjusted to be near the dark mode switch */
-    display: inline-block;
-    width: 23px;
-    height: 23px;
-}
 
 /* Add styles for the new cards */
 .cards-container {
@@ -331,4 +323,50 @@ footer img {
 
 .tab-content.active {
     display: block;
+}
+
+#map {
+    height: 600px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.map-buttons {
+    text-align: center;
+    margin-top: 10px;
+}
+.map-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.map-buttons button:hover {
+    background-color: #555;
+}
+.down-arrow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 16.5l-8-8h16z"/></svg>') no-repeat center center;
+    background-size: contain;
+}
+.go-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.go-back:hover {
+    background-color: #555;
 }

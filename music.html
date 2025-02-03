@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Playlists</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        .go-back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .go-back:hover {
+            background-color: #555;
+        }
+        .iframe-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .iframe-grid iframe {
+            flex: 0 0 calc(50% - 20px);
+            min-width: 300px;
+        }
+        @media (max-width: 768px) {
+            .iframe-grid iframe {
+                flex: 0 0 100%;
+            }
+        }
+        h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="go-back" onclick="window.location.href='index.html'">←</button>
+        <h1>My Playlists</h1>
+        <p>I love music and I have a lot of playlists on Spotify. I usually listen to them while I'm working or gaming.
+            <br>99% of the time I never edit them, instead I create a new one, so they are like a time capsule of my music taste at that moment.
+            <br>Hope you enjoy them!
+        </p>
+    </header>
+    <main>
+        <section>
+            <h2>2024</h2>
+            <div class="iframe-grid">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7kJ1JynbwOotzogT2qcYOb?utm_source=generator&theme=0"    width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2xV3lK2nk0uOQaYVIDhhSt?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1edAbnS5TWqvnsrxZ1rLKU?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1FoCoHwpdrDqG0?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </section>
+        <section>
+            <h2>2023</h2>
+            <div class="iframe-grid">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0dkOQb1JE3u187vZIvAymf?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3wvjbIXoNtohEmHDx597UK?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/13HVY9EBbrg7CghYaTgyeB?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1FajSuDPhFLS3W?utm_source=generator"            width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </section>
+        <br><br>
+    </main>
+    <footer>
+        <p>This website was made by me with <img src="https://www.svgrepo.com/show/439915/heart-fill.svg" alt="love"> and <img src="https://simpleicons.org/icons/githubcopilot.svg" alt="Copilot"></p>
+    </footer>
+</body>
+</html>

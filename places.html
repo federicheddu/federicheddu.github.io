@@ -7,54 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .map-buttons {
-            text-align: center;
-            margin-top: 10px;
-        }
-        .map-buttons button {
-            margin: 5px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .map-buttons button:hover {
-            background-color: #555;
-        }
-        .down-arrow {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 16.5l-8-8h16z"/></svg>') no-repeat center center;
-            background-size: contain;
-        }
-        .go-back {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .go-back:hover {
-            background-color: #555;
-        }
-    </style>
 </head>
+
 <body>
     <header>
         <button class="go-back" onclick="window.location.href='index.html'">←</button>
