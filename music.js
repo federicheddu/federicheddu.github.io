@@ -3,7 +3,7 @@ const playlists = [
   {
     name: "Summericheddu '25",
     cover: "media/playlists/summericheddu25.jpeg",
-    url: "",
+    url: "https://open.spotify.com/user/federicheddu98",
     vinyl: "media/vinyl/vinyl-4.png"
   },
   {

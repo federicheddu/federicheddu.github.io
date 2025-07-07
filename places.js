@@ -6,161 +6,161 @@ const places = [
     name: "Cagliari, Italy",
     lat: 39.2238,
     lng: 9.1217,
-    img: "media/places/cagliari.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "My hometown and where I study."
   },
   {
     name: "Rome, Italy",
     lat: 41.9028,
     lng: 12.4964,
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Colosseum_in_Rome%2C_Italy_-_April_2007.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "The Eternal City, rich in history and culture."
   },
   {
     name: "Milan, Italy",
     lat: 45.4642,
     lng: 9.19,
-    img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Milano_Duomo_2016.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Italy's fashion and design capital."
   },
   {
     name: "Naples, Italy",
     lat: 40.8518,
     lng: 14.2681,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Napoli_Bay.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Famous for pizza and its vibrant atmosphere."
   },
   {
     name: "Paris, France",
     lat: 48.8566,
     lng: 2.3522,
-    img: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "The city of lights and romance."
   },
   {
     name: "Athens, Greece",
     lat: 37.9838,
     lng: 23.7275,
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/AcropolisAthens.JPG",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Cradle of Western civilization."
   },
   {
     name: "Budapest, Hungary",
     lat: 47.4979,
     lng: 19.0402,
-    img: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Budapest_Parliament.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "The Pearl of the Danube."
   },
   {
     name: "Florence, Italy",
     lat: 43.7696,
     lng: 11.2558,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Florence_Duomo_from_Michelangelo_hill.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Birthplace of the Renaissance."
   },
   {
     name: "Verona, Italy",
     lat: 45.4384,
     lng: 10.9916,
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Verona_Panorama.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "City of Romeo and Juliet."
   },
   {
     name: "Mont Saint-Michel, France",
     lat: 48.6361,
     lng: -1.5115,
-    img: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Mont_Saint-Michel_Abbey_01.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "A magical island topped by a gravity-defying abbey."
   },
   {
     name: "Lugano, Switzerland",
     lat: 46.0037,
     lng: 8.9511,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Lugano_view.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "A lakeside city with Swiss-Italian charm."
   },
   {
     name: "Corte, France (Corsica)",
     lat: 42.3061,
     lng: 9.1500,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Corte_vue_g%C3%A9n%C3%A9rale.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Historic town in the heart of Corsica."
   },
   {
     name: "Venice, Italy",
     lat: 45.4408,
     lng: 12.3155,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Venice_Canal_Grande.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "The floating city of canals."
   },
   {
     name: "Annecy, France",
     lat: 45.8992,
     lng: 6.1296,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Annecy_vue_du_chateau.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "The Venice of the Alps."
   },
   {
     name: "Tokyo, Japan",
     lat: 35.6895,
     lng: 139.6917,
-    img: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Tokyo_Tower_and_around_Skyscrapers.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Japan's bustling capital."
   },
   {
     name: "Kyoto, Japan",
     lat: 35.0116,
     lng: 135.7681,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Kiyomizu-dera_in_Kyoto.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Famous for its classical Buddhist temples and gardens."
   },
   {
     name: "Osaka, Japan",
     lat: 34.6937,
     lng: 135.5023,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Osaka_Castle_02bs3200.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Known for modern architecture and street food."
   },
   {
     name: "Matsumoto, Japan",
     lat: 36.2381,
     lng: 137.9717,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Matsumoto_Castle_in_Matsumoto%2C_Nagano_Prefecture%2C_Japan.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Home to one of Japan's most beautiful castles."
   },
   {
     name: "Takayama, Japan",
     lat: 36.1467,
     lng: 137.2517,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Takayama_Old_Town.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "A beautifully preserved old town."
   },
   {
     name: "Kanazawa, Japan",
     lat: 36.5613,
     lng: 136.6562,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Kanazawa_Kenrokuen_Garden.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Known for Kenrokuen Garden and samurai districts."
   },
   {
     name: "Nara, Japan",
     lat: 34.6851,
     lng: 135.8048,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Nara_Park_and_Todaiji_Temple.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Famous for its free-roaming deer and temples."
   },
   {
     name: "Shirakawa-go, Japan",
     lat: 36.2608,
     lng: 136.8996,
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Shirakawa-go_Gassho_Zukuri.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "A UNESCO World Heritage village with traditional farmhouses."
   },
   {
     name: "Sydney, Australia",
     lat: -33.8688,
     lng: 151.2093,
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Sydney_Opera_House_-_Dec_2008.jpg",
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "Famous for its Opera House and stunning harbour."
   }
 ];
