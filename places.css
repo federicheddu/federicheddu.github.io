@@ -1,3 +1,7 @@
+h3 {
+  margin-bottom: 0.5em;
+}
+
 /* Map control buttons */
 .map-buttons {
   display: flex;

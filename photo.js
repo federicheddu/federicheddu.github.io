@@ -1,46 +1,14 @@
 // Photo page JS: display photos as polaroids
 // Example photos array
 const photos = [
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
-  {
-    src: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
-    caption: "Cagliari"
-  },
+  { src: "media/photos/P1080829.jpg", caption: "Dangerous" },
+  { src: "media/photos/P1080832.jpg", caption: "Surfin'" },
+  { src: "media/photos/P1080930.jpg", caption: "Waves" },
+  { src: "media/photos/P1080951_2.jpg", caption: "Night Opera" },
+  { src: "media/photos/P1090006.jpg", caption: "Reflection" },
+  { src: "media/photos/P1090034.jpg", caption: "Giorgio" },
+  { src: "media/photos/P1090052.jpg", caption: "Pietro & Giovanni" },
+  { src: "media/photos/P1090060.jpg", caption: "Chill" },
 ];
 
 const gallery = document.querySelector('.polaroid-gallery');
