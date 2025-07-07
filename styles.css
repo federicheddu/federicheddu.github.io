@@ -203,6 +203,13 @@ footer {
 }
 /* Responsive Styles */
 @media (max-width: 700px) {
+  /* Show mobile publication title, hide desktop */
+  .publication-title-mobile {
+    display: block;
+  }
+  .publication-title {
+    display: none;
+  }
   .header-flex {
     flex-direction: column;
     gap: 1rem;
@@ -221,5 +228,15 @@ footer {
   .profile-pic {
     width: 70px;
     height: 70px;
+  }
+}
+
+@media (min-width: 701px) {
+  /* Show desktop publication title, hide mobile */
+  .publication-title-mobile {
+    display: none;
+  }
+  .publication-title {
+    display: block;
   }
 }
