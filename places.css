@@ -1,0 +1,75 @@
+/* Map control buttons */
+.map-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.map-buttons button {
+  background: #39506b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.map-buttons button:hover {
+  background: #25364a;
+}
+/* Travel page map and cards */
+.travel-map {
+  width: 100%;
+  height: 350px;
+  background: #e0e7ef;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.places-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+.place-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 1rem;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.place-card img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 0.7rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 700px) {
+  .travel-map { height: 220px; margin-bottom: 1em;}
+  .map-buttons button {
+    font-size: 0.92rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+  }
+  .places-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2em;
+  }
+  .place-card { width: 98%; margin: 0 auto; }
+  .place-card img { width: 98vw; max-width: 98%; height: 38vw; min-height: 120px; max-height: 220px; }
+}

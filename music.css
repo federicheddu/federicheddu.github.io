@@ -1,0 +1,101 @@
+/* Music page vinyl style */
+.vinyl-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 900px) {
+  .vinyl-gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.vinyl-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+}
+/* Vinyl layout: cover is a square, vinyl is behind and pops out to the right */
+.vinyl {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 0.2rem;
+  transition: transform 0.3s cubic-bezier(.4,1.6,.4,1);
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* Make the cover larger and the vinyl more hidden behind it */
+/* Hide the vinyl even more and pop out less */
+/* Make the vinyl almost the same size as the cover */
+.vinyl-cover-square {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border: 2px solid #fff;
+}
+/* Vinyl is mostly hidden, only 1/4 visible by default, pops out a bit more on hover */
+.vinyl-disc-img {
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  transition: left 0.35s cubic-bezier(.4,1.6,.4,1), box-shadow 0.2s;
+  pointer-events: none;
+}
+.vinyl:hover .vinyl-disc-img {
+  left: 90px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+.vinyl:hover {
+  transform: scale(1.06);
+  z-index: 2;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+.playlist-info {
+  text-align: center;
+}
+
+.playlist-info {
+  width: 250px;
+  padding-right: 25px;
+}
+.vinyl-card .playlist-info h4 {
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 700px) {
+  .vinyl-gallery {
+    gap: 0.5rem;
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+  .vinyl-card { width: 100%; }
+  .vinyl { width: 120px; height: 120px; }
+  .vinyl-cover-square { width: 100px; height: 100px; }
+  .vinyl-disc-img {
+    width: 90px; height: 90px;
+    left: 30px; top: 15px;
+  }
+  .vinyl:hover .vinyl-disc-img {
+    left: 50px;
+  }
+}
