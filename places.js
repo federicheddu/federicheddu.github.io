@@ -174,8 +174,12 @@ function initMap() {
     mapDiv._leaflet_id = null;
     mapDiv.innerHTML = '';
   }
-  // Default: show the world
-  mapInstance = L.map('map').setView([20, 0], 2);
+  // Default: show the world (from North America to New Zealand)
+  mapInstance = L.map('map');
+  mapInstance.fitBounds([
+    [70, -130],   // Alaska/Canada (northwest)
+    [-50, 180]    // New Zealand (southeast)
+  ]);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mapInstance);
@@ -193,7 +197,13 @@ function setupMapButtons() {
   const btnWorld = document.getElementById('btn-world');
   if (btnEurope) {
     btnEurope.onclick = () => {
-      if (mapInstance) mapInstance.setView([50, 10], 4); // Europe
+      if (mapInstance) {
+        // Fit from Iceland to Baghdad
+        mapInstance.fitBounds([
+          [66, -25],   // Iceland (northwest)
+          [33, 45]     // Baghdad (southeast)
+        ]);
+      }
     };
   }
   if (btnJapan) {
@@ -208,20 +218,19 @@ function setupMapButtons() {
   }
   if (btnWorld) {
     btnWorld.onclick = () => {
-      if (mapInstance) mapInstance.setView([20, 0], 2); // World (minimum zoom)
+      if (mapInstance) {
+        // Fit from North America to New Zealand
+        mapInstance.fitBounds([
+          [70, -130],   // Alaska/Canada (northwest)
+          [-50, 180]    // New Zealand (southeast)
+        ]);
+      }
     };
   }
 }
 
 function showPlaceCard(idx) {
-  const cards = document.querySelector('.places-cards');
-  if (!cards) return;
-  const p = places[idx];
-  cards.innerHTML = `<div class="place-card">
-    <img src="${p.img}" alt="${p.name}">
-    <h4>${p.name}</h4>
-    <p>${p.desc}</p>
-  </div>`;
+  // Do nothing: keep all place cards visible
 }
 
 document.addEventListener('DOMContentLoaded', () => {
