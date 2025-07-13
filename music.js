@@ -1,9 +1,9 @@
 // Music page JS: dynamically add playlists with vinyl pop-out effect
 const playlists = [
   {
-    name: "Summericheddu '25",
+    name: "nppǝɥɔı̣ɹǝɯɯnS ‘25",
     cover: "media/playlists/summericheddu25.jpeg",
-    url: "https://open.spotify.com/user/federicheddu98",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
     vinyl: "media/vinyl/vinyl-4.png"
   },
   {
