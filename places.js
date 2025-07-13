@@ -59,6 +59,13 @@ const places = [
     desc: "Birthplace of the Renaissance."
   },
   {
+    name: "Pisa, Italy",
+    lat: 43.7228,
+    lng: 10.4017,
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
+    desc: "Famous for its iconic Leaning Tower and historic university."
+  },
+  {
     name: "Verona, Italy",
     lat: 45.4384,
     lng: 10.9916,
@@ -155,6 +162,13 @@ const places = [
     lng: 136.8996,
     img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
     desc: "A UNESCO World Heritage village with traditional farmhouses."
+  },
+  {
+    name: "Abu Dhabi, UAE",
+    lat: 24.4539,
+    lng: 54.3773,
+    img: "https://photographypro.com/wp-content/uploads/2018/01/shoot-panoramic-photos-4@2x.jpg",
+    desc: "Capital of the United Arab Emirates, known for its modern architecture and beautiful waterfront."
   },
   {
     name: "Sydney, Australia",
