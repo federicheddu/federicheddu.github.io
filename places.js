@@ -279,9 +279,97 @@ function showPlaceCard(idx) {
   // Do nothing: keep all place cards visible
 }
 
+function renderTravelStats() {
+  const statsEl = document.getElementById('travel-stats');
+  const flagsEl = document.getElementById('travel-flags');
+  if (!statsEl) return;
+  const TOTAL_COUNTRIES = 195; // UN members + observers
+  // Derive country names
+  const countryCounts = {};
+  places.forEach(p => {
+    let country = p.name.includes(',') ? p.name.split(',')[1].trim() : p.name.trim();
+    country = country.replace(/\(.*?\)/g,'').trim();
+    countryCounts[country] = (countryCounts[country] || 0) + 1;
+  });
+  const totalPlaces = places.length;
+  const countries = Object.keys(countryCounts);
+  const visitedCountries = countries.length;
+
+  // World exploration by AREA (km²)
+  const WORLD_LAND_AREA = 148_940_000; // Approximate total land area of Earth
+  const countryAreas = {
+    'Italy': 301_340,
+    'France': 551_695,        // Metropolitan
+    'Greece': 131_957,
+    'Hungary': 93_028,
+    'Vatican City': 0.49,
+    'Switzerland': 41_277,
+    'Japan': 377_975,
+    'UAE': 83_600,
+    'Australia': 7_692_024,
+    'Vanuatu': 12_189
+  };
+  // Sum unique visited areas
+  const visitedArea = countries.reduce((sum, c) => {
+    // Allow for 'United Arab Emirates' vs 'UAE' if needed
+    if (countryAreas[c] != null) return sum + countryAreas[c];
+    if (c === 'United Arab Emirates' && countryAreas['UAE']) return sum + countryAreas['UAE'];
+    return sum;
+  }, 0);
+  const worldPctArea = (visitedArea / WORLD_LAND_AREA) * 100;
+  const worldPct = (Math.round(worldPctArea * 100) / 100).toFixed(2).replace(/\.00$/,'');
+
+  // Farthest place from home (first entry as home)
+  const home = places[0];
+  const R = 6371;
+  function haversine(a, b) {
+    const toRad = d => d * Math.PI / 180;
+    const dLat = toRad(b.lat - a.lat);
+    const dLng = toRad(b.lng - a.lng);
+    const lat1 = toRad(a.lat);
+    const lat2 = toRad(b.lat);
+    const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  let farthest = { name: '', distKm: 0 };
+  places.slice(1).forEach(p => {
+    const d = haversine(home, p);
+    if (d > farthest.distKm) farthest = { name: p.name, distKm: Math.round(d) };
+  });
+
+  const countryFlags = {
+    'Italy':'🇮🇹',
+    'France':'🇫🇷',
+    'Greece':'🇬🇷',
+    'Hungary':'🇭🇺',
+    'Vatican City':'🇻🇦',
+    'Switzerland':'🇨🇭',
+    'Japan':'🇯🇵',
+    'UAE':'🇦🇪',
+    'United Arab Emirates':'🇦🇪',
+    'Australia':'🇦🇺',
+    'Vanuatu':'🇻🇺'
+  };
+  const statsHtml = `
+    <div class="stat"><span class="num">${totalPlaces}</span><span class="label">Places</span></div>
+    <div class="stat"><span class="num">${visitedCountries} / ${TOTAL_COUNTRIES}</span><span class="label">Countries</span></div>
+    <div class="stat"><span class="num">${worldPct}%</span><span class="label">World (Area)</span></div>
+    <div class="stat"><span class="num">${farthest.name}</span><span class="label">${farthest.distKm} km away</span></div>
+  `;
+  statsEl.innerHTML = statsHtml;
+  if (flagsEl) {
+    const sortedCountries = countries.slice().sort((a,b)=>a.localeCompare(b));
+    flagsEl.innerHTML = sortedCountries.map(c=>{
+      const flag = countryFlags[c] || '🏳️';
+      return `<span class="flag" title="${c}">${flag}</span>`;
+    }).join('');
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
   setupMapButtons();
+  renderTravelStats();
   // Show all places as cards by default
   const cards = document.querySelector('.places-cards');
   if (cards) {
