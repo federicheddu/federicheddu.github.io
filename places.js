@@ -1,4 +1,3 @@
-
 // Travel page JS: Leaflet map and cards
 // Example places array
 const places = [
@@ -183,6 +182,13 @@ const places = [
     lng: 151.2093,
     img: "https://www.shutterstock.com/image-photo/busy-morning-around-sydney-opera-600nw-2333401423.jpg",
     desc: "Opera House, harbour, and city."
+  },
+  {
+    name: "Port Vila, Vanuatu",
+    lat: -17.7333,
+    lng: 168.3167,
+    img: "https://static.ffx.io/images/$zoom_1%2C$multiply_0.7546%2C$ratio_1.777778%2C$width_1972%2C$x_28%2C$y_136/t_crop_custom/q_62%2Cf_auto/50c446ddc7fa35d6eff52c60023b8b2d9511a8da",
+    desc: "Capital, harbour, and islands."
   }
 ];
 
@@ -212,9 +218,11 @@ function initMap() {
 }
 
 function setupMapButtons() {
+  // Button order changed in HTML (Italy now first); IDs unchanged so logic below still valid.
   const btnEurope = document.getElementById('btn-europe');
+  const btnItaly = document.getElementById('btn-italy');
   const btnJapan = document.getElementById('btn-japan');
-  const btnAustralia = document.getElementById('btn-australia');
+  const btnOceania = document.getElementById('btn-oceania');
   const btnWorld = document.getElementById('btn-world');
   if (btnEurope) {
     btnEurope.onclick = () => {
@@ -227,14 +235,31 @@ function setupMapButtons() {
       }
     };
   }
+  if (btnItaly) {
+    btnItaly.onclick = () => {
+      if (mapInstance) {
+        // Bounds roughly covering mainland Italy + islands (Sardinia, Sicily)
+        mapInstance.fitBounds([
+          [47.3, 6.0],   // NW near Alps / France
+          [36.4, 19.0]   // SE including Sicily heel/toe and Adriatic
+        ]);
+      }
+    };
+  }
   if (btnJapan) {
     btnJapan.onclick = () => {
       if (mapInstance) mapInstance.setView([36.2, 138.2], 5); // Japan
     };
   }
-  if (btnAustralia) {
-    btnAustralia.onclick = () => {
-      if (mapInstance) mapInstance.setView([-25, 134], 4); // Australia
+  if (btnOceania) {
+    btnOceania.onclick = () => {
+      if (mapInstance) {
+        // Bounds covering Australia + Vanuatu
+        mapInstance.fitBounds([
+          [-8, 110],   // NW (near Indonesia)
+          [-50, 180]   // SE (south of NZ, east Pacific edge)
+        ]);
+      }
     };
   }
   if (btnWorld) {
