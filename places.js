@@ -366,19 +366,132 @@ function renderTravelStats() {
   }
 }
 
+// Map city (or city,country) to IATA code (simplified list)
+const IATA = {
+  "Cagliari": "CAG",
+  "Rome": "FCO",
+  "Milan": "MXP",
+  "Naples": "NAP",
+  "Paris": "CDG",
+  "Athens": "ATH",
+  "Budapest": "BUD",
+  "Vatican City": "VAT",
+  "Florence": "FLR",
+  "Pisa": "PSA",
+  "Verona": "VRN",
+  "Mont Saint-Michel": "MSM",
+  "Lugano": "LUG",
+  "Corte": "CLY",
+  "Venice": "VCE",
+  "Annecy": "NCY",
+  "Tokyo": "HND",
+  "Kyoto": "UKY",
+  "Osaka": "KIX",
+  "Matsumoto": "MMJ",
+  "Takayama": "TKY", // not real; placeholder
+  "Kanazawa": "KMQ",
+  "Nara": "NRA",
+  "Shirakawa-go": "SHI",
+  "Abu Dhabi": "AUH",
+  "Sydney": "SYD",
+  "Port Vila": "VLI"
+};
+
+// Utility to extract city (before comma)
+function cityOf(placeName){
+  return placeName.split(',')[0].trim();
+}
+
+function generateBoardingPassHTML() {
+  const grid = document.querySelector('.tickets-grid');
+  if (!grid) return;
+  const homeCity = cityOf(places[0].name);
+  const homeCode = IATA[homeCity] || homeCity.substring(0,3).toUpperCase();
+  const cabinClasses = ["ECONOMY","PREMIUM","BUSINESS","ECONOMY","ECONOMY"];
+  const airlineName = "FEDERICHEDDU AIRLINES";
+  // Skip index 0 (home) for destination passes
+  const tickets = places.slice(1).map((p, idx) => {
+    const destCity = cityOf(p.name);
+    const destCode = IATA[destCity] || destCity.substring(0,3).toUpperCase();
+    const flightNum = `FM${(idx+101).toString()}`;
+    const gate = String.fromCharCode(65 + (idx % 6)) + ((idx * 7) % 18 + 1);
+    const seat = `${((idx * 3) % 30 + 1).toString().padStart(2,'0')}${"ABCDEF"[idx % 6]}`;
+    const group = (idx % 5) + 1;
+    const depTime = "08:" + ((idx * 13) % 60).toString().padStart(2,'0');
+    const arrTime = "12:" + ((idx * 17) % 60).toString().padStart(2,'0');
+    const boardingTime = "07:" + ((idx * 11) % 60).toString().padStart(2,'0');
+    const travelDate = new Date(2025, (idx * 2) % 12, ((idx * 5) % 27) + 1);
+    const dateStr = travelDate.toISOString().slice(0,10);
+    const pnr = Array.from({length:6},()=> "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)]).join('');
+    const cabin = cabinClasses[idx % cabinClasses.length];
+    return `
+      <div class="boarding-pass">
+        <div class="bp-main">
+          <div class="bp-bg" style="background-image:url('${p.img}')"></div>
+          <div class="bp-header">
+            <div class="airline">${airlineName}</div>
+            <div class="pnr" title="Booking Ref / PNR">${pnr}</div>
+          </div>
+          <div class="iata-row">
+            <div class="iata">${destCode}</div>
+            <div class="city-block">
+              <div class="city">${destCity}</div>
+              <div class="country">${p.name.split(',').slice(1).join(',').trim()}</div>
+            </div>
+          </div>
+            <div class="route" aria-label="Route ${homeCode} to ${destCode}">
+              <span class="from">${homeCode}</span>
+              <span class="air" aria-hidden="true">✈</span>
+              <span class="to">${destCode}</span>
+            </div>
+          <div class="meta">
+            <div class="pair">
+              <div class="label">Flight</div>
+              <div class="val">${flightNum}</div>
+            </div>
+            <div class="pair">
+              <div class="label">Depart</div>
+              <div class="val">${depTime}</div>
+            </div>
+            <div class="pair">
+              <div class="label">Arrive</div>
+              <div class="val">${arrTime}</div>
+            </div>
+            <div class="pair">
+              <div class="label">Gate</div>
+              <div class="val">${gate}</div>
+            </div>
+          </div>
+          <div class="class-row">
+            <div class="class-badge">${cabin}</div>
+            <div class="boarding-time" title="Boarding Time">BRD ${boardingTime}</div>
+            <div class="date-chip">${dateStr}</div>
+          </div>
+          <div class="bp-footer">
+            NON-TRANSFERABLE &nbsp;|&nbsp; ID REQUIRED &nbsp;|&nbsp; VALID ONLY ON DATE SHOWN
+          </div>
+        </div>
+        <div class="bp-stub">
+          <div class="stub-grid">
+            <div class="pair"><div class="label">FLIGHT</div><div class="val">${flightNum}</div></div>
+            <div class="pair"><div class="label">DATE</div><div class="val">${dateStr.slice(5)}</div></div>
+            <div class="pair"><div class="label">GATE</div><div class="val">${gate}</div></div>
+            <div class="pair"><div class="label">BOARD</div><div class="val">${boardingTime}</div></div>
+            <div class="pair"><div class="label">SEAT</div><div class="val">${seat}</div></div>
+            <div class="pair"><div class="label">GROUP</div><div class="val">${group}</div></div>
+          </div>
+          <div class="barcode" aria-hidden="true"></div>
+          <div class="stub-vert">${airlineName}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  grid.innerHTML = tickets;
+}
+// If the original DOMContentLoaded listener was lost by truncation, restore it:
 document.addEventListener('DOMContentLoaded', () => {
   initMap();
   setupMapButtons();
   renderTravelStats();
-  // Show all places as cards by default
-  const cards = document.querySelector('.places-cards');
-  if (cards) {
-    cards.innerHTML = places.map(p => `
-      <div class="place-card">
-        <img src="${p.img}" alt="${p.name}">
-        <h4>${p.name}</h4>
-        <p>${p.desc}</p>
-      </div>
-    `).join('');
-  }
+  generateBoardingPassHTML();
 });
