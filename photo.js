@@ -1,95 +1,95 @@
-// Photo page JS: display photos as polaroids
-// Example photos array
-const photos = [
-  { src: "media/photos/P1080829.jpg", caption: "Dangerous" },
-  { src: "media/photos/P1080832.jpg", caption: "Surfin'" },
-  { src: "media/photos/P1080930.jpg", caption: "Waves" },
-  { src: "media/photos/P1080951_2.jpg", caption: "Night Opera" },
-  { src: "media/photos/P1090006.jpg", caption: "Reflection" },
-  { src: "media/photos/P1090034.jpg", caption: "Giorgio" },
-  { src: "media/photos/P1090052.jpg", caption: "Pietro & Giovanni" },
-  { src: "media/photos/P1090060.jpg", caption: "Chill" },
+/* Photos page script placeholder
+   The previous polaroid/drag functionality has been removed while the page is rebuilt from scratch. */
+
+// Film canisters data and interactive gallery (similar structure to music.js)
+const films = [
+  { name: 'Kodak Ektar 100', src: 'media/film/Ektar_100.svg', frames: ['media/photos/P1080829.jpg','media/photos/P1080832.jpg','media/photos/P1080930.jpg'] },
+  { name: 'Fujifilm Pro 400H', src: 'media/film/Fuji_Pro_400H.svg', frames: ['media/photos/P1080951_2.jpg','media/photos/P1090006.jpg','media/photos/P1090034.jpg'] },
+  { name: 'Fujifilm Superia 200', src: 'media/film/Fuji_Superia_200.svg', frames: ['media/photos/P1090052.jpg','media/photos/P1090060.jpg','media/photos/P1080829.jpg'] },
+  { name: 'Ilford Delta 100', src: 'media/film/Ilford_Delta_100.svg', frames: ['media/photos/P1080832.jpg','media/photos/P1080930.jpg','media/photos/P1080951_2.jpg'] },
+  { name: 'Ilford FP4', src: 'media/film/Ilford_FP4.svg', frames: ['media/photos/P1090006.jpg','media/photos/P1090034.jpg','media/photos/P1090052.jpg'] },
+  { name: 'Kodak Portra 160', src: 'media/film/Kodak_Portra_160.svg', frames: ['media/photos/P1090060.jpg','media/photos/P1080829.jpg','media/photos/P1080832.jpg'] },
 ];
 
-const gallery = document.querySelector('.polaroid-gallery');
-if (gallery && photos.length) {
-  gallery.innerHTML = '';
-  // Make gallery relative for absolute positioning
-  gallery.style.position = 'relative';
-  gallery.style.minHeight = '600px';
-  photos.forEach(ph => {
-    const polaroid = document.createElement('div');
-    polaroid.className = 'polaroid';
-    const img = document.createElement('img');
-    img.src = ph.src;
-    img.alt = ph.caption;
-    // Set aspect ratio after image loads
-    img.addEventListener('load', function() {
-      if (img.naturalHeight > img.naturalWidth) {
-        img.style.aspectRatio = '3 / 4';
-      } else {
-        img.style.aspectRatio = '4 / 3';
+const filmGallery = document.querySelector('.film-gallery');
+if (filmGallery && films.length) {
+  filmGallery.innerHTML = '';
+  films.forEach((film) => {
+    const card = document.createElement('div');
+    card.className = 'film-card';
+    const framesHtml = (film.frames || []).slice(0,3).map(src => `
+        <div class="film-frame"><img src="${src}" alt="Frame" loading="lazy" decoding="async"></div>
+    `).join('');
+    card.innerHTML = `
+      <div class="film-canister" role="button" tabindex="0" aria-pressed="false" aria-label="${film.name}">
+        <img src="${film.src}" alt="${film.name}">
+        <div class="film-strip" aria-hidden="true">${framesHtml}</div>
+      </div>
+      <div class="film-title">${film.name}</div>
+    `;
+
+    const canister = card.querySelector('.film-canister');
+    const strip = card.querySelector('.film-strip');
+
+    const layoutStrip = () => {
+      if (!card.classList.contains('active')) return;
+      const galleryRect = filmGallery.getBoundingClientRect();
+      const canRect = canister.getBoundingClientRect();
+      const rightSpace = Math.max(0, galleryRect.right - canRect.right - 8);
+      strip.style.width = `${rightSpace}px`;
+
+      const cs = getComputedStyle(strip);
+      const pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+      const gap = parseFloat(cs.columnGap || cs.gap || '0');
+      const frames = Array.from(strip.querySelectorAll('.film-frame'));
+      const available = Math.max(0, strip.clientWidth - pad - gap * (frames.length - 1));
+      const frameW = frames.length ? available / frames.length : 0;
+      frames.forEach(f => { f.style.width = `${frameW}px`; });
+    };
+
+    const openCard = (targetCard) => {
+      // Close any other open card
+      document.querySelectorAll('.film-card.active').forEach(c => {
+        if (c !== targetCard) {
+          c.classList.remove('active');
+          const btn = c.querySelector('.film-canister');
+          if (btn) btn.setAttribute('aria-pressed', 'false');
+        }
+      });
+      // Toggle target
+      const can = targetCard.querySelector('.film-canister');
+      const wasActive = targetCard.classList.contains('active');
+      if (wasActive) {
+        targetCard.classList.remove('active');
+        if (can) can.setAttribute('aria-pressed', 'false');
+        return;
+      }
+
+      // Add measuring state first to reserve space and avoid jank
+      targetCard.classList.add('measuring');
+      requestAnimationFrame(() => {
+        // Now activate and layout
+        targetCard.classList.add('active');
+        targetCard.classList.remove('measuring');
+        if (can) can.setAttribute('aria-pressed', 'true');
+        requestAnimationFrame(() => {
+          layoutStrip();
+        });
+      });
+    };
+
+    const canisterClick = () => openCard(card);
+
+    canister.addEventListener('click', canisterClick);
+    canister.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        canisterClick();
       }
     });
-    const caption = document.createElement('div');
-    caption.className = 'caption';
-    caption.textContent = ph.caption;
-    polaroid.appendChild(img);
-    polaroid.appendChild(caption);
-    // Random rotation for scattered effect
-    polaroid.style.transform = `rotate(${Math.random()*6-3}deg)`;
 
-    // Make polaroid draggable
-    polaroid.style.cursor = 'grab';
-    polaroid.style.position = 'absolute';
-    // Place randomly in the gallery area
-    polaroid.style.left = Math.random() * 60 + 10 + '%';
-    polaroid.style.top = Math.random() * 40 + 10 + '%';
+    window.addEventListener('resize', layoutStrip);
 
-    let offsetX, offsetY, isDragging = false;
-
-    function onPointerDown(e) {
-      isDragging = true;
-      polaroid.style.cursor = 'grabbing';
-      const rect = polaroid.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      offsetX = clientX - rect.left;
-      offsetY = clientY - rect.top;
-      document.addEventListener('pointermove', onPointerMove);
-      document.addEventListener('pointerup', onPointerUp);
-      // For touch
-      document.addEventListener('touchmove', onPointerMove, {passive: false});
-      document.addEventListener('touchend', onPointerUp);
-    }
-
-    function onPointerMove(e) {
-      if (!isDragging) return;
-      if (e.preventDefault) e.preventDefault();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const galleryRect = gallery.getBoundingClientRect();
-      let left = clientX - galleryRect.left - offsetX;
-      let top = clientY - galleryRect.top - offsetY;
-      // Clamp within gallery
-      left = Math.max(0, Math.min(left, galleryRect.width - polaroid.offsetWidth));
-      top = Math.max(0, Math.min(top, galleryRect.height - polaroid.offsetHeight));
-      polaroid.style.left = left + 'px';
-      polaroid.style.top = top + 'px';
-    }
-
-    function onPointerUp() {
-      isDragging = false;
-      polaroid.style.cursor = 'grab';
-      document.removeEventListener('pointermove', onPointerMove);
-      document.removeEventListener('pointerup', onPointerUp);
-      document.removeEventListener('touchmove', onPointerMove);
-      document.removeEventListener('touchend', onPointerUp);
-    }
-
-    polaroid.addEventListener('pointerdown', onPointerDown);
-    polaroid.addEventListener('touchstart', onPointerDown);
-
-    gallery.appendChild(polaroid);
+    filmGallery.appendChild(card);
   });
 }
