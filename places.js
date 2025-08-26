@@ -1,198 +1,10 @@
 // Travel page JS: Leaflet map and cards
-// Example places array
-const places = [
-  {
-    name: "Cagliari, Italy",
-    lat: 39.2238,
-    lng: 9.1217,
-    img: "https://www.rossocorallo.info/wp-content/uploads/2019/09/hotel-panorama-cagliari-centro-in-sardegna11.jpg",
-    desc: "My hometown and university city."
-  },
-  {
-    name: "Rome, Italy",
-    lat: 41.9028,
-    lng: 12.4964,
-    img: "https://media-cdn.tripadvisor.com/media/photo-s/11/4c/3a/10/panorama-da-roma-dal.jpg",
-    desc: "History, culture, and ancient ruins."
-  },
-  {
-    name: "Milan, Italy",
-    lat: 45.4642,
-    lng: 9.19,
-    img: "https://www.shutterstock.com/image-photo/drone-photography-duomo-cathedral-sunrise-600nw-2313454157.jpg",
-    desc: "Fashion, design, and vibrant life."
-  },
-  {
-    name: "Naples, Italy",
-    lat: 40.8518,
-    lng: 14.2681,
-    img: "https://www.napolidavivere.it/wp-content/uploads/bfi_thumb/Bar-ristoranti-e-botteghe-artigianali-sotto-il-colonnato-di-Piazza-del-Plebiscito-a-Napoli-640x360-6ge1yeh065tnx8d42pej56w4ye8wzslnoxmb89f8fxw.jpg",
-    desc: "Pizza, sea, and lively streets."
-  },
-  {
-    name: "Paris, France",
-    lat: 48.8566,
-    lng: 2.3522,
-    img: "https://hshnet-cdn2.hosiho.net/en/images/655-vue-aerienne-de-la-tour-eiffel-vue-du-champ-de-mars-en-ete-paris-france-2078893-80-airbuzz.jpg",
-    desc: "Eiffel Tower, romance, and art."
-  },
-  {
-    name: "Athens, Greece",
-    lat: 37.9838,
-    lng: 23.7275,
-    img: "https://www.shutterstock.com/image-photo/acropolis-greece-parthenon-athens-aerial-600nw-2422091405.jpg",
-    desc: "Acropolis, history, and philosophy."
-  },
-  {
-    name: "Budapest, Hungary",
-    lat: 47.4979,
-    lng: 19.0402,
-    img: "https://www.shutterstock.com/image-photo/hungary-danube-river-city-budapest-600nw-2524447201.jpg",
-    desc: "Danube, bridges, and thermal baths."
-  },
-  {
-    name: "Vatican City",
-    lat: 41.9029,
-    lng: 12.4534,
-    img: "https://st3.idealista.it/news/archivie/styles/fullwidth_xl/public/2024-11/images/vista_dalla_cupola_della_basilica_di_san_pietro.jpg",
-    desc: "Pope, basilica, and tiny state."
-  },
-  {
-    name: "Florence, Italy",
-    lat: 43.7696,
-    lng: 11.2558,
-    img: "https://www.shutterstock.com/image-photo/aerial-view-florence-cathedral-duomo-600nw-2373587937.jpg",
-    desc: "Renaissance, art, and Duomo."
-  },
-  {
-    name: "Pisa, Italy",
-    lat: 43.7228,
-    lng: 10.4017,
-    img: "https://www.shutterstock.com/shutterstock/videos/1092222331/thumb/7.jpg",
-    desc: "Leaning Tower and university city."
-  },
-  {
-    name: "Verona, Italy",
-    lat: 45.4384,
-    lng: 10.9916,
-    img: "https://www.shutterstock.com/image-photo/aerial-view-verona-historical-city-600nw-1686555913.jpg",
-    desc: "Romeo, Juliet, and old city."
-  },
-  {
-    name: "Mont Saint-Michel, France",
-    lat: 48.6361,
-    lng: -1.5115,
-    img: "https://www.shutterstock.com/shutterstock/videos/3505839691/thumb/1.jpg",
-    desc: "Island, abbey, and tidal views."
-  },
-  {
-    name: "Lugano, Switzerland",
-    lat: 46.0037,
-    lng: 8.9511,
-    img: "https://www.shutterstock.com/shutterstock/videos/3522378029/thumb/1.jpg",
-    desc: "Lake, Swiss-Italian charm."
-  },
-  {
-    name: "Corte, France (Corsica)",
-    lat: 42.3061,
-    lng: 9.1500,
-    img: "https://www.shutterstock.com/image-photo/aerial-view-corte-old-town-600nw-2447562587.jpg",
-    desc: "Corsica, history, and mountains."
-  },
-  {
-    name: "Venice, Italy",
-    lat: 45.4408,
-    lng: 12.3155,
-    img: "https://www.shutterstock.com/image-photo/aerial-view-venice-near-saint-600nw-2417910893.jpg",
-    desc: "Canals, gondolas, and art."
-  },
-  {
-    name: "Annecy, France",
-    lat: 45.8992,
-    lng: 6.1296,
-    img: "https://www.shutterstock.com/image-photo/france-travel-landmarks-romantic-beautiful-600nw-2251109699.jpg",
-    desc: "Alps, canals, and old town."
-  },
-  {
-    name: "Tokyo, Japan",
-    lat: 35.6895,
-    lng: 139.6917,
-    img: "https://www.shutterstock.com/image-photo/shibuya-crossing-twilight-tokyo-japan-600nw-1608796999.jpg",
-    desc: "Skyscrapers, crossing, and nightlife."
-  },
-  {
-    name: "Kyoto, Japan",
-    lat: 35.0116,
-    lng: 135.7681,
-    img: "https://www.shutterstock.com/shutterstock/videos/3826478109/thumb/1.jpg",
-    desc: "Temples, gardens, and traditions."
-  },
-  {
-    name: "Osaka, Japan",
-    lat: 34.6937,
-    lng: 135.5023,
-    img: "https://media.istockphoto.com/id/1181423366/photo/osaka-castle-in-osaka-japan.jpg?s=612x612&w=0&k=20&c=FYVWbNddBNjubil8rtN1Mm4wFI9fRu9s5k9tNCadVsQ=",
-    desc: "Castle, food, and modern city."
-  },
-  {
-    name: "Matsumoto, Japan",
-    lat: 36.2381,
-    lng: 137.9717,
-    img: "https://www.shutterstock.com/shutterstock/videos/1110383129/thumb/1.jpg",
-    desc: "Castle, history, and mountains."
-  },
-  {
-    name: "Takayama, Japan",
-    lat: 36.1467,
-    lng: 137.2517,
-    img: "https://media.istockphoto.com/id/521890621/photo/takayama.jpg?s=612x612&w=0&k=20&c=x0Q6bwEHGEdt8cUjXx8E03GwWWN5wF4yOK-f-O3x_XU=",
-    desc: "Old town, tradition, and charm."
-  },
-  {
-    name: "Kanazawa, Japan",
-    lat: 36.5613,
-    lng: 136.6562,
-    img: "https://www.shutterstock.com/shutterstock/videos/3709168243/thumb/1.jpg",
-    desc: "Garden, samurai, and culture."
-  },
-  {
-    name: "Nara, Japan",
-    lat: 34.6851,
-    lng: 135.8048,
-    img: "https://media.gettyimages.com/id/675938976/video/asian-deer-during-cherry-blossom-season-japan.jpg?s=640x640&k=20&c=Xw9hS13lAslOkt5NoZI52cQgepiP0xZtccqYOi90vNU=",
-    desc: "Deer, temples, and parks."
-  },
-  {
-    name: "Shirakawa-go, Japan",
-    lat: 36.2608,
-    lng: 136.8996,
-    img: "https://www.shutterstock.com/shutterstock/videos/3653593975/thumb/1.jpg",
-    desc: "Farmhouses, heritage, and snow."
-  },
-  {
-    name: "Abu Dhabi, UAE",
-    lat: 24.4539,
-    lng: 54.3773,
-    img: "https://www.shutterstock.com/image-photo/23-january-2025-abu-dhabi-600nw-2599222721.jpg",
-    desc: "Just the airport :("
-  },
-  {
-    name: "Sydney, Australia",
-    lat: -33.8688,
-    lng: 151.2093,
-    img: "https://www.shutterstock.com/image-photo/busy-morning-around-sydney-opera-600nw-2333401423.jpg",
-    desc: "Opera House, harbour, and city."
-  },
-  {
-    name: "Port Vila, Vanuatu",
-    lat: -17.7333,
-    lng: 168.3167,
-    img: "https://static.ffx.io/images/$zoom_1%2C$multiply_0.7546%2C$ratio_1.777778%2C$width_1972%2C$x_28%2C$y_136/t_crop_custom/q_62%2Cf_auto/50c446ddc7fa35d6eff52c60023b8b2d9511a8da",
-    desc: "Capital, harbour, and islands."
-  }
-];
+
+// Removed inline places array; now loaded from places.json
+let places = [];
 
 let mapInstance = null;
+
 function initMap() {
   const mapDiv = document.getElementById('map');
   if (!mapDiv) return;
@@ -282,7 +94,7 @@ function showPlaceCard(idx) {
 function renderTravelStats() {
   const statsEl = document.getElementById('travel-stats');
   const flagsEl = document.getElementById('travel-flags');
-  if (!statsEl) return;
+  if (!statsEl || !places.length) return;
   const TOTAL_COUNTRIES = 195; // UN members + observers
   // Derive country names
   const countryCounts = {};
@@ -299,7 +111,7 @@ function renderTravelStats() {
   const WORLD_LAND_AREA = 148_940_000; // Approximate total land area of Earth
   const countryAreas = {
     'Italy': 301_340,
-    'France': 551_695,        // Metropolitan
+    'France': 551_695,
     'Greece': 131_957,
     'Hungary': 93_028,
     'Vatican City': 0.49,
@@ -307,7 +119,8 @@ function renderTravelStats() {
     'Japan': 377_975,
     'UAE': 83_600,
     'Australia': 7_692_024,
-    'Vanuatu': 12_189
+    'Vanuatu': 12_189,
+    'Austria': 83_879 // added
   };
   // Sum unique visited areas
   const visitedArea = countries.reduce((sum, c) => {
@@ -348,13 +161,14 @@ function renderTravelStats() {
     'UAE':'🇦🇪',
     'United Arab Emirates':'🇦🇪',
     'Australia':'🇦🇺',
-    'Vanuatu':'🇻🇺'
+    'Vanuatu':'🇻🇺',
+    'Austria':'🇦🇹' // added
   };
   const statsHtml = `
-    <div class="stat"><span class="num">${totalPlaces}</span><span class="label">Places</span></div>
-    <div class="stat"><span class="num">${visitedCountries} / ${TOTAL_COUNTRIES}</span><span class="label">Countries</span></div>
-    <div class="stat"><span class="num">${worldPct}%</span><span class="label">World (Area)</span></div>
-    <div class="stat"><span class="num">${farthest.name}</span><span class="label">${farthest.distKm} km away</span></div>
+    <div class="stat"><span class="label">Visited</span><span class="num">${totalPlaces}</span><span class="label">Places</span></div>
+    <div class="stat"><span class="label">Visited</span><span class="num">${visitedCountries} / ${TOTAL_COUNTRIES}</span><span class="label">Countries</span></div>
+    <div class="stat"><span class="label">Visited</span><span class="num">${worldPct}%</span><span class="label">of World Area</span></div>
+    <div class="stat"><span class="label">Farthest place from home</span><span class="num">${farthest.name}</span><span class="label">${farthest.distKm} km away</span></div>
   `;
   statsEl.innerHTML = statsHtml;
   if (flagsEl) {
@@ -366,132 +180,18 @@ function renderTravelStats() {
   }
 }
 
-// Map city (or city,country) to IATA code (simplified list)
-const IATA = {
-  "Cagliari": "CAG",
-  "Rome": "FCO",
-  "Milan": "MXP",
-  "Naples": "NAP",
-  "Paris": "CDG",
-  "Athens": "ATH",
-  "Budapest": "BUD",
-  "Vatican City": "VAT",
-  "Florence": "FLR",
-  "Pisa": "PSA",
-  "Verona": "VRN",
-  "Mont Saint-Michel": "MSM",
-  "Lugano": "LUG",
-  "Corte": "CLY",
-  "Venice": "VCE",
-  "Annecy": "NCY",
-  "Tokyo": "HND",
-  "Kyoto": "UKY",
-  "Osaka": "KIX",
-  "Matsumoto": "MMJ",
-  "Takayama": "TKY", // not real; placeholder
-  "Kanazawa": "KMQ",
-  "Nara": "NRA",
-  "Shirakawa-go": "SHI",
-  "Abu Dhabi": "AUH",
-  "Sydney": "SYD",
-  "Port Vila": "VLI"
-};
-
-// Utility to extract city (before comma)
-function cityOf(placeName){
-  return placeName.split(',')[0].trim();
-}
-
-function generateBoardingPassHTML() {
-  const grid = document.querySelector('.tickets-grid');
-  if (!grid) return;
-  const homeCity = cityOf(places[0].name);
-  const homeCode = IATA[homeCity] || homeCity.substring(0,3).toUpperCase();
-  const cabinClasses = ["ECONOMY","PREMIUM","BUSINESS","ECONOMY","ECONOMY"];
-  const airlineName = "FEDERICHEDDU AIRLINES";
-  // Skip index 0 (home) for destination passes
-  const tickets = places.slice(1).map((p, idx) => {
-    const destCity = cityOf(p.name);
-    const destCode = IATA[destCity] || destCity.substring(0,3).toUpperCase();
-    const flightNum = `FM${(idx+101).toString()}`;
-    const gate = String.fromCharCode(65 + (idx % 6)) + ((idx * 7) % 18 + 1);
-    const seat = `${((idx * 3) % 30 + 1).toString().padStart(2,'0')}${"ABCDEF"[idx % 6]}`;
-    const group = (idx % 5) + 1;
-    const depTime = "08:" + ((idx * 13) % 60).toString().padStart(2,'0');
-    const arrTime = "12:" + ((idx * 17) % 60).toString().padStart(2,'0');
-    const boardingTime = "07:" + ((idx * 11) % 60).toString().padStart(2,'0');
-    const travelDate = new Date(2025, (idx * 2) % 12, ((idx * 5) % 27) + 1);
-    const dateStr = travelDate.toISOString().slice(0,10);
-    const pnr = Array.from({length:6},()=> "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random()*26)]).join('');
-    const cabin = cabinClasses[idx % cabinClasses.length];
-    return `
-      <div class="boarding-pass">
-        <div class="bp-main">
-          <div class="bp-bg" style="background-image:url('${p.img}')"></div>
-          <div class="bp-header">
-            <div class="airline">${airlineName}</div>
-            <div class="pnr" title="Booking Ref / PNR">${pnr}</div>
-          </div>
-          <div class="iata-row">
-            <div class="iata">${destCode}</div>
-            <div class="city-block">
-              <div class="city">${destCity}</div>
-              <div class="country">${p.name.split(',').slice(1).join(',').trim()}</div>
-            </div>
-          </div>
-            <div class="route" aria-label="Route ${homeCode} to ${destCode}">
-              <span class="from">${homeCode}</span>
-              <span class="air" aria-hidden="true">✈</span>
-              <span class="to">${destCode}</span>
-            </div>
-          <div class="meta">
-            <div class="pair">
-              <div class="label">Flight</div>
-              <div class="val">${flightNum}</div>
-            </div>
-            <div class="pair">
-              <div class="label">Depart</div>
-              <div class="val">${depTime}</div>
-            </div>
-            <div class="pair">
-              <div class="label">Arrive</div>
-              <div class="val">${arrTime}</div>
-            </div>
-            <div class="pair">
-              <div class="label">Gate</div>
-              <div class="val">${gate}</div>
-            </div>
-          </div>
-          <div class="class-row">
-            <div class="class-badge">${cabin}</div>
-            <div class="boarding-time" title="Boarding Time">BRD ${boardingTime}</div>
-            <div class="date-chip">${dateStr}</div>
-          </div>
-          <div class="bp-footer">
-            NON-TRANSFERABLE &nbsp;|&nbsp; ID REQUIRED &nbsp;|&nbsp; VALID ONLY ON DATE SHOWN
-          </div>
-        </div>
-        <div class="bp-stub">
-          <div class="stub-grid">
-            <div class="pair"><div class="label">FLIGHT</div><div class="val">${flightNum}</div></div>
-            <div class="pair"><div class="label">DATE</div><div class="val">${dateStr.slice(5)}</div></div>
-            <div class="pair"><div class="label">GATE</div><div class="val">${gate}</div></div>
-            <div class="pair"><div class="label">BOARD</div><div class="val">${boardingTime}</div></div>
-            <div class="pair"><div class="label">SEAT</div><div class="val">${seat}</div></div>
-            <div class="pair"><div class="label">GROUP</div><div class="val">${group}</div></div>
-          </div>
-          <div class="barcode" aria-hidden="true"></div>
-          <div class="stub-vert">${airlineName}</div>
-        </div>
-      </div>
-    `;
-  }).join('');
-  grid.innerHTML = tickets;
-}
-// If the original DOMContentLoaded listener was lost by truncation, restore it:
+// Load places then initialize
 document.addEventListener('DOMContentLoaded', () => {
-  initMap();
-  setupMapButtons();
-  renderTravelStats();
-  generateBoardingPassHTML();
+  fetch('places.json')
+    .then(r => r.json())
+    .then(data => {
+      places = data;
+      initMap();
+      setupMapButtons();
+      renderTravelStats();
+    })
+    .catch(err => {
+      console.error('Failed loading places.json', err);
+    });
 });
+// End of file
