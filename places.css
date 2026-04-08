@@ -35,7 +35,7 @@ h3 {
   position: relative;
   overflow: hidden;
 }
-.places-cards, .place-card { display:none !important; }
+.places-cards { display:block; }
 
 .tickets-grid {
   display:grid;
@@ -499,4 +499,71 @@ h3 {
   text-transform:uppercase;
   color:#4f6578;
   margin:.2rem 0 .2rem;
+}
+
+/* Places cards (grouped by continent -> country) - minimal, full-width layout */
+.places-cards {
+  margin: 1.2rem 0 2rem;
+  display: block;
+}
+.continent-section {
+  margin-bottom: 0.8rem;
+  background: #fff;
+  border:1px solid #e9f0f5;
+  border-radius:8px;
+  padding:0.5rem 0.65rem 0.5rem 0.9rem;
+  width:100%;
+}
+.continent-title {
+  font-size:1.05rem;
+  font-weight:900;
+  color:#12303b;
+  margin:0 0 0.35rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+.country-group {
+  margin:0.35rem 0 0.6rem;
+}
+.country-title {
+  font-size:0.88rem;
+  font-weight:700;
+  color:#25394c;
+  margin:0 0 0.35rem;
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+}
+.places-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:0.6rem;
+}
+.place-card {
+  display:flex;
+  gap:0.6rem;
+  align-items:center;
+  background:transparent;
+  border:1px solid #eef6fa;
+  border-radius:8px;
+  padding:0.45rem;
+}
+.place-card img {
+  width:96px;
+  height:64px;
+  object-fit:cover;
+  border-radius:6px;
+  flex:0 0 96px;
+}
+.place-info { flex:1; }
+.place-name { font-weight:700; color:#0f2430; font-size:0.92rem; margin-bottom:0.1rem; }
+.place-desc { font-size:0.8rem; color:#5f7080; }
+.place-card.card-highlight { box-shadow:0 6px 18px -6px rgba(0,0,0,0.12); transform:translateY(-2px); border-color:#3b556b; }
+
+@media (max-width:880px){
+  .places-cards { padding:0 0.25rem; }
+}
+@media (max-width:640px){
+  .places-grid { grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); }
+  .place-card img { width:80px; height:56px; }
 }

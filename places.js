@@ -4,6 +4,7 @@
 let places = [];
 
 let mapInstance = null;
+let markers = [];
 
 function initMap() {
   const mapDiv = document.getElementById('map');
@@ -22,8 +23,11 @@ function initMap() {
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mapInstance);
+  markers = [];
   places.forEach((p, i) => {
     const marker = L.marker([p.lat, p.lng]).addTo(mapInstance);
+    marker._placeIndex = i;
+    markers[i] = marker;
     marker.on('click', () => showPlaceCard(i));
     marker.bindPopup(`<b>${p.name}</b>`);
   });
@@ -88,7 +92,91 @@ function setupMapButtons() {
 }
 
 function showPlaceCard(idx) {
-  // Do nothing: keep all place cards visible
+  const card = document.querySelector(`.place-card[data-index="${idx}"]`);
+  if (card) {
+    card.scrollIntoView({behavior:'smooth', block:'center'});
+    card.classList.add('card-highlight');
+    setTimeout(()=>card.classList.remove('card-highlight'), 2200);
+  }
+  // Open marker popup and pan map
+  const m = markers[idx];
+  if (m && mapInstance) {
+    mapInstance.setView(m.getLatLng(), Math.max(mapInstance.getZoom(), 5));
+    m.openPopup();
+  }
+}
+
+// Minimal continent mapping for places present in places.json
+const countryToContinent = {
+  'Italy':'Europe', 'France':'Europe', 'Greece':'Europe', 'Hungary':'Europe', 'Vatican City':'Europe',
+  'Switzerland':'Europe', 'Austria':'Europe', 'Poland':'Europe',
+  'Japan':'Asia', 'United Arab Emirates':'Asia', 'UAE':'Asia', 'Egypt':'Africa',
+  'Australia':'Oceania', 'Vanuatu':'Oceania'
+};
+
+// Emoji map for countries (used by card rendering)
+const countryEmoji = {
+  'Italy':'🇮🇹','France':'🇫🇷','Greece':'🇬🇷','Hungary':'🇭🇺','Vatican City':'🇻🇦',
+  'Switzerland':'🇨🇭','Austria':'🇦🇹','Poland':'🇵🇱','Japan':'🇯🇵','United Arab Emirates':'🇦🇪',
+  'UAE':'🇦🇪','Egypt':'🇪🇬','Australia':'🇦🇺','Vanuatu':'🇻🇺'
+};
+
+function renderPlaceCards(){
+  const container = document.getElementById('places-cards');
+  if (!container || !places.length) return;
+  // Group by continent then country
+  const groups = {};
+  places.forEach((p, i)=>{
+    let country = p.name.includes(',') ? p.name.split(',')[1].trim() : p.name.trim();
+    country = country.replace(/\(.*?\)/g,'').trim();
+    const continent = countryToContinent[country] || 'Other';
+    groups[continent] = groups[continent] || {};
+    groups[continent][country] = groups[continent][country] || [];
+    groups[continent][country].push({ place: p, idx:i });
+  });
+
+  // Order continents: Europe, Asia, Oceania, Africa — then any others alphabetically
+  const desiredOrder = ['Europe','Asia','Oceania','Africa'];
+  const present = Object.keys(groups);
+  const others = present.filter(c=>!desiredOrder.includes(c)).sort();
+  const continents = desiredOrder.filter(c=>groups[c]).concat(others);
+  const html = continents.map(cont=>{
+    const countries = Object.keys(groups[cont]).sort();
+    const countryHtml = countries.map(country=>{
+      const cards = groups[cont][country].map(item=>{
+        const p = item.place;
+        return `
+          <article class="place-card" data-index="${item.idx}" tabindex="0">
+            <img src="${p.img}" alt="${p.name}">
+            <div class="place-info">
+              <div class="place-name">${p.name.split(',')[0].trim()}</div>
+              <div class="place-desc">${p.desc || ''}</div>
+            </div>
+          </article>`;
+      }).join('');
+      const cEmoji = countryEmoji[country] ? countryEmoji[country] + ' ' : '';
+      return `<div class="country-group"><div class="country-title">${cEmoji}${country}</div><div class="places-grid">${cards}</div></div>`;
+    }).join('');
+    return `<section class="continent-section"><h4 class="continent-title">${cont}</h4>${countryHtml}</section>`;
+  }).join('');
+
+  container.innerHTML = html;
+
+  // Wire up click handlers on cards
+  container.querySelectorAll('.place-card').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const idx = Number(el.getAttribute('data-index'));
+      if (!Number.isNaN(idx)) {
+        const m = markers[idx];
+        if (m && mapInstance) {
+          mapInstance.setView(m.getLatLng(), Math.max(mapInstance.getZoom(), 5));
+          m.openPopup();
+        }
+        el.classList.add('card-highlight');
+        setTimeout(()=>el.classList.remove('card-highlight'),2200);
+      }
+    });
+  });
 }
 
 function renderTravelStats() {
@@ -118,10 +206,13 @@ function renderTravelStats() {
     'Switzerland': 41_277,
     'Japan': 377_975,
     'UAE': 83_600,
+    'Egypt': 1_010_408,
+    'Poland': 312_679,
     'Australia': 7_692_024,
     'Vanuatu': 12_189,
-    'Austria': 83_879 // added
+    'Austria': 83_879, // added
   };
+  
   // Sum unique visited areas
   const visitedArea = countries.reduce((sum, c) => {
     // Allow for 'United Arab Emirates' vs 'UAE' if needed
@@ -160,6 +251,8 @@ function renderTravelStats() {
     'Japan':'🇯🇵',
     'UAE':'🇦🇪',
     'United Arab Emirates':'🇦🇪',
+    'Egypt':'🇪🇬',
+    'Poland':'🇵🇱',
     'Australia':'🇦🇺',
     'Vanuatu':'🇻🇺',
     'Austria':'🇦🇹' // added
@@ -188,7 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
       places = data;
       initMap();
       setupMapButtons();
-      renderTravelStats();
+        renderTravelStats();
+        renderPlaceCards();
     })
     .catch(err => {
       console.error('Failed loading places.json', err);
