@@ -1,6 +1,54 @@
 // Music page JS: dynamically add playlists with vinyl pop-out effect
 const playlists = [
   {
+    name: "Summericheddu ‘26 C-Side",
+    cover: "media/playlists/summericheddu26c.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "Summericheddu ‘26 B-Side",
+    cover: "media/playlists/summericheddu26b.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "Summericheddu ‘26",
+    cover: "media/playlists/summericheddu26.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "Springhericheddu ‘26",
+    cover: "media/playlists/springhericheddu26.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "Wintericheddu ‘25 B-Side",
+    cover: "media/playlists/wintericheddu25b.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "Wintericheddu ‘25",
+    cover: "media/playlists/wintericheddu25.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "nppǝɥɔı̣ɹǝllɐℲ ‘25",
+    cover: "media/playlists/fallericheddu25.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
+    name: "nppǝɥɔı̣ɹǝɯɯnS ‘25 B-Side",
+    cover: "media/playlists/summericheddu25b.jpeg",
+    url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",
+    vinyl: "media/vinyl/vinyl-4.png"
+  },
+  {
     name: "nppǝɥɔı̣ɹǝɯɯnS ‘25",
     cover: "media/playlists/summericheddu25.jpeg",
     url: "https://open.spotify.com/playlist/2NhiIlYybcy8qUBjkI33aV",

@@ -109,7 +109,7 @@ function showPlaceCard(idx) {
 // Minimal continent mapping for places present in places.json
 const countryToContinent = {
   'Italy':'Europe', 'France':'Europe', 'Greece':'Europe', 'Hungary':'Europe', 'Vatican City':'Europe',
-  'Switzerland':'Europe', 'Austria':'Europe', 'Poland':'Europe',
+  'Switzerland':'Europe', 'Austria':'Europe', 'Poland':'Europe', 'Germany':'Europe', 'Sweden':'Europe', 'Slovakia':'Europe',
   'Japan':'Asia', 'United Arab Emirates':'Asia', 'UAE':'Asia', 'Egypt':'Africa',
   'Australia':'Oceania', 'Vanuatu':'Oceania'
 };
@@ -117,8 +117,8 @@ const countryToContinent = {
 // Emoji map for countries (used by card rendering)
 const countryEmoji = {
   'Italy':'🇮🇹','France':'🇫🇷','Greece':'🇬🇷','Hungary':'🇭🇺','Vatican City':'🇻🇦',
-  'Switzerland':'🇨🇭','Austria':'🇦🇹','Poland':'🇵🇱','Japan':'🇯🇵','United Arab Emirates':'🇦🇪',
-  'UAE':'🇦🇪','Egypt':'🇪🇬','Australia':'🇦🇺','Vanuatu':'🇻🇺'
+  'Switzerland':'🇨🇭','Austria':'🇦🇹','Poland':'🇵🇱','Germany':'🇩🇪','Sweden':'🇸🇪','Slovakia':'🇸🇰',
+  'Japan':'🇯🇵','United Arab Emirates':'🇦🇪','UAE':'🇦🇪','Egypt':'🇪🇬','Australia':'🇦🇺','Vanuatu':'🇻🇺'
 };
 
 function renderPlaceCards(){
@@ -211,6 +211,9 @@ function renderTravelStats() {
     'Australia': 7_692_024,
     'Vanuatu': 12_189,
     'Austria': 83_879, // added
+    'Germany': 357_022, // added
+    'Sweden': 450_295, // added
+    'Slovakia': 49_034, // added
   };
   
   // Sum unique visited areas
@@ -255,7 +258,10 @@ function renderTravelStats() {
     'Poland':'🇵🇱',
     'Australia':'🇦🇺',
     'Vanuatu':'🇻🇺',
-    'Austria':'🇦🇹' // added
+    'Austria':'🇦🇹', // added
+    'Germany':'🇩🇪', // added
+    'Sweden':'🇸🇪', // added
+    'Slovakia':'🇸🇰', // added
   };
   const statsHtml = `
     <div class="stat"><span class="label">Visited</span><span class="num">${totalPlaces}</span><span class="label">Places</span></div>
